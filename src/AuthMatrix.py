@@ -18,68 +18,64 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from burp import IBurpExtender
-from burp import ITab
-from burp import IMessageEditorController
-from burp import IContextMenuFactory
-from burp import IHttpRequestResponse
-
-from java.awt import Component;
-from java.awt import GridBagLayout;
-from java.awt import GridBagConstraints;
-from java.awt import Dimension;
-from java.util import ArrayList;
-from java.lang import Boolean;
-from javax.swing import JScrollPane;
-from javax.swing import JSplitPane;
-from javax.swing import JTabbedPane;
-from javax.swing import JPanel;
-from javax.swing import JButton;
-from javax.swing import JTable;
-from javax.swing import JOptionPane;
-from javax.swing import JMenuItem;
-from javax.swing import JCheckBox;
-from javax.swing import JComboBox;
-from javax.swing import DefaultCellEditor;
-from javax.swing import JLabel;
-from javax.swing import JFileChooser;
-from javax.swing import JPopupMenu;
-from javax.swing import JTextField;
-from javax.swing import TransferHandler;
-from javax.swing import DropMode;
-from javax.swing import JSeparator;
-from javax.swing import SwingConstants;
-from javax.swing import JList
-from javax.swing import AbstractCellEditor
-from javax.swing import Timer
-from java.awt.datatransfer import StringSelection;
-from java.awt.datatransfer import DataFlavor;
-from javax.swing.table import AbstractTableModel;
-from javax.swing.table import TableCellRenderer;
-from javax.swing.table import JTableHeader;
-from javax.swing.table import TableCellEditor
-from java.awt import Color;
-from java.awt import Font;
-from java.awt.event import MouseAdapter;
-from java.awt.event import ActionListener;
-from java.awt.event import ItemListener;
-from java.awt.event import ItemEvent;
-from javax.swing.event import DocumentListener;
-from javax.swing.event import ChangeListener;
-import java.lang;
-
-from org.python.core.util import StringUtil
-from threading import Lock
-from threading import Thread
-import traceback
-import re
-import urllib
+import base64
 import hashlib
 import json
-import base64
 import random
+import re
 import string
+import traceback
+import urllib
+from threading import Lock
+from threading import Thread
 
+import java.lang
+from burp import IBurpExtender
+from burp import IContextMenuFactory
+from burp import IHttpRequestResponse
+from burp import IMessageEditorController
+from burp import ITab
+from java.awt import Color
+from java.awt import Dimension
+from java.awt import GridBagConstraints
+from java.awt import GridBagLayout
+from java.awt.datatransfer import DataFlavor
+from java.awt.datatransfer import StringSelection
+from java.awt.event import ActionListener
+from java.awt.event import ItemEvent
+from java.awt.event import ItemListener
+from java.awt.event import MouseAdapter
+from java.lang import Boolean
+from java.util import ArrayList
+from javax.swing import AbstractCellEditor
+from javax.swing import DefaultCellEditor
+from javax.swing import DropMode
+from javax.swing import JButton
+from javax.swing import JCheckBox
+from javax.swing import JComboBox
+from javax.swing import JFileChooser
+from javax.swing import JLabel
+from javax.swing import JList
+from javax.swing import JMenuItem
+from javax.swing import JOptionPane
+from javax.swing import JPanel
+from javax.swing import JPopupMenu
+from javax.swing import JScrollPane
+from javax.swing import JSeparator
+from javax.swing import JSplitPane
+from javax.swing import JTabbedPane
+from javax.swing import JTable
+from javax.swing import JTextField
+from javax.swing import SwingConstants
+from javax.swing import Timer
+from javax.swing import TransferHandler
+from javax.swing.event import ChangeListener
+from javax.swing.event import DocumentListener
+from javax.swing.table import AbstractTableModel
+from javax.swing.table import JTableHeader
+from javax.swing.table import TableCellEditor
+from javax.swing.table import TableCellRenderer
+from org.python.core.util import StringUtil
 
 AUTHMATRIX_VERSION = "0.8.2"
 
@@ -1423,8 +1419,6 @@ class MatrixDB():
         self.lock.release()
 
     def loadLegacy(self, fileName, extender):
-        from java.io import ObjectOutputStream;
-        from java.io import FileOutputStream;
         from java.io import ObjectInputStream;
         from java.io import FileInputStream;
 
